@@ -9,6 +9,7 @@ export default function TextForm(props) {
     let newText = text.toUpperCase();
     setText(newText);
   };
+
   const handleLoClick = () => {
     console.log("Lowercase was clicked " + text);
     let newText = text.toLowerCase();
@@ -20,6 +21,29 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
 
+  const handleOnCopy = () => {
+    const newText = text;
+    setText(newText);
+    navigator.clipboard
+      .writeText(newText)
+      .then(() => {
+        console.log("Text copied to clipboard!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  };
+
+  const handleClearClick = () => {
+    console.log("Clear was clicked " + text);
+    let newText = "text.bg-warning";
+    setText(newText);
+  };
+
+  const handleExtraSpaces = () => {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "));
+  };
   return (
     <>
       {" "}
@@ -34,11 +58,20 @@ export default function TextForm(props) {
             onChange={handleOnChange}
           ></textarea>
         </div>
-        <button className='btn btn-primary' onClick={handleUpClick}>
+        <button className='btn btn-primary m-3' onClick={handleUpClick}>
           Convert to Uppercase
         </button>
         <button className='btn btn-primary m-3' onClick={handleLoClick}>
           Convert to Lowercase
+        </button>
+        <button className='btn btn-primary m-3' onClick={handleOnCopy}>
+          Copy Text
+        </button>
+        <button className='btn btn-primary m-3' onClick={handleClearClick}>
+          Clear Text
+        </button>
+        <button className='btn btn-primary m-3' onClick={handleExtraSpaces}>
+          Remove Extra Spaces
         </button>
       </div>
       <div className='container my-5'>
