@@ -9,10 +9,9 @@ function App() {
         <Navbar title="TextUtils" aboutText="About TextUtils" />
         <TextForm heading="Enter the text to analyse" />
       </div>
-
-      {/* <Navbar /> */}
     </>
   );
 }
-
+//blockscope var global scope, let and const can't be accessed outside the block.
+//pure and impure functions
 export default App;
